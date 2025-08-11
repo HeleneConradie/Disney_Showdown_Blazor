@@ -53,3 +53,9 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+/bin/Debug
+/obj/Debug
+/obj
+/appsettings.json
+/Properties/launchSettings.json

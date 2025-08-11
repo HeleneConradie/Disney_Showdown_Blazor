@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DisneyShowdown")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de560d36e9947e109599832353b067a707e73969")]
 [assembly: System.Reflection.AssemblyProductAttribute("DisneyShowdown")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DisneyShowdown")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

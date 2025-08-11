@@ -1,0 +1,88 @@
+﻿@page "/"
+
+<style>
+    .image-container {
+        position: relative;
+        display: inline-block;
+        width: 25%;
+    }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+    /* The hover text overlay */
+    .overlay-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 15px; /* more padding for better readability */
+        text-align: center;
+        font-size: 18px; /* bigger text */
+        font-weight: bold; /* make text pop */
+        border-radius: 8px;
+        max-width: 90%; /* prevent it from spilling outside image */
+        line-height: 1.4;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    /* Show text on hover */
+    .image-container:hover .overlay-text {
+        opacity: 1;
+    }
+</style>
+
+<div style="padding-bottom: 2%">
+    <h3>DID YOU KNOW?</h3>
+    <small>Hover over the image to see interesting facts!</small>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 5%; padding-bottom: 2%">
+    <div class="image-container">
+        <img src="Assets/WinnieThePooh.jpg">
+        <div class="overlay-text">Winnie the Pooh was inspired by a real bear named Winnipeg.</div>
+    </div>
+    <div class="image-container">
+        <img src="Assets/Stitch.jpg">
+        <div class="overlay-text">Stitch can lift objects 3,000 times his own weight.</div>
+    </div>
+    <div class="image-container">
+        <img src="Assets/ToyStory.jpg">
+        <div class="overlay-text">Toy Story was the first feature-length film made entirely with CGI.</div>
+    </div>
+    <div class="image-container">
+        <img src="Assets/LionKing.jpg">
+        <div class="overlay-text">
+            The opening scene was the first time Disney created a trailer from a complete scene.
+        </div>
+    </div>
+</div>
+<div style="display: flex; justify-content: center; gap: 5%;">
+    <div class="image-container">
+        <img src="Assets/DisneyRandom.jpg">
+        <div class="overlay-text">Mickey Mouse was the first animated character to get a star on the Hollywood Walk of Fame.</div>
+    </div>
+    <div class="image-container">
+        <img src="Assets/Mickey.jpg">
+        <div class="overlay-text">He was created by Walt Disney after losing rights to Oswald the Lucky Rabbit.</div>
+    </div>
+    <div class="image-container">
+        <img src="Assets/Minnie.jpg">
+        <div class="overlay-text">Minnie's full name is Minerva Mouse.</div>
+    </div>
+    <div class="image-container">
+        <img src="Assets/Pinocchio.png">
+        <div class="overlay-text">The initial published version of the story ended with Pinocchio's death.</div>
+    </div>
+</div>
+
+@code {
+
+}

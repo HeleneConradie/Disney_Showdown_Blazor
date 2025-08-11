@@ -1,0 +1,23 @@
+﻿@page "/ComparePage"
+
+<div style="display: flex; justify-content: center;">
+    <h3><i>Who's the mightier Mouseketeer?</i></h3>
+</div>
+<div style="display: flex; gap: 5%">
+    <div>A</div>
+    <div>B</div>
+</div>
+
+@code {
+    public List<Characters> AllCharacters { get; set; } = new List<Characters>();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var APIResult = await Characters.GetAllCharacters();
+            AllCharacters = APIResult.data;
+        }
+    }
+
+}

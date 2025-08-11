@@ -1,0 +1,2 @@
+C:\Users\helen\OneDrive\Desktop\Disney_Showdown_Blazor\Disney_Showdown_Blazor\wwwroot\Assets\Minnie.png
+C:\Users\helen\OneDrive\Desktop\Disney_Showdown_Blazor\Disney_Showdown_Blazor\wwwroot\Assets\Pinocchio.jpg

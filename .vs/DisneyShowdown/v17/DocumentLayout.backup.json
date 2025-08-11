@@ -1,7 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_ShowDown\\DisneyShowdown\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9B9348E2-A1C5-4D84-AED9-055B9C4D6704}|DisneyShowdown.csproj|c:\\users\\helen\\onedrive\\desktop\\disney_showdown_blazor\\disney_showdown_blazor\\pages\\comparepage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9B9348E2-A1C5-4D84-AED9-055B9C4D6704}|DisneyShowdown.csproj|solutionrelative:pages\\comparepage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,6 +31,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ComparePage.razor",
+              "DocumentMoniker": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\Pages\\ComparePage.razor",
+              "RelativeDocumentMoniker": "Pages\\ComparePage.razor",
+              "ToolTip": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\Pages\\ComparePage.razor",
+              "RelativeToolTip": "Pages\\ComparePage.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-11T18:44:31.744Z",
+              "EditorCaption": ""
             }
           ]
         }
