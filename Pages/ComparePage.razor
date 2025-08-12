@@ -1,15 +1,90 @@
 ﻿@page "/ComparePage"
+<style>
+    .image-container {
+        position: relative;
+        display: inline-block;
+        width: 25%;
+    }
 
-<div style="display: flex; justify-content: center;">
-    <h3><i>Who's the mightier Mouseketeer?</i></h3>
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+    .bottom-right-image {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 150px;
+        height: auto;
+        z-index: 1000;
+    }
+</style>
+
+<div class="justify-content-center d-flex">
+    <div class="image-container">
+        <img src="Assets/DisneyLogoPlain.jpg">
+    </div>
 </div>
-<div style="display: flex; gap: 5%">
-    <div>A</div>
-    <div>B</div>
+<div class="row" style="height: 200px">
+    <div class="col-12 col-md">
+        <span><img src="Assets/StitchOne.jpg" style="height: 15%; width: auto;" /> Choose a Character </span>
+        <select class="form-control" @onchange="OnSelectedItemChanged">
+            @foreach (var item in AllCharacters)
+            {
+                <option value="@item._id" selected="@(item == SelectedItem)">@item.name</option>
+            }
+        </select>
+    </div>
+    <div class="col-12 col-md">
+        <span><img src="Assets/StitchTwo.jpg" style="height: 15%; width: auto;" />Choose a Character </span>
+        <select class="form-control" @onchange="OnSelectedItemChanged2">
+            @foreach (var item in AllCharacters)
+            {
+                <option value="@item._id" selected="@(item == SelectedItem2)">@item.name</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="row d-flex p-2">
+    @if (SelectedItem != null && SelectedItem._id > 0)
+    {
+        <div class="col">
+aaa
+        </div>
+    }
+    @if (SelectedItem2 != null && SelectedItem2._id > 0)
+    {
+        <div class="col">
+            bbbb
+        </div>
+    }
+</div>
+<div>
+    <img class="bottom-right-image" src="Assets/Stitch.jpg" />
 </div>
 
 @code {
+
     public List<Characters> AllCharacters { get; set; } = new List<Characters>();
+    private Characters SelectedItem;
+    private Characters SelectedItem2;
+
+    private async void OnSelectedItemChanged(ChangeEventArgs e)
+    {
+        var ID = e.Value.ToString();
+        SelectedItem = AllCharacters.Find(ch => ch._id.ToString() == ID);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void OnSelectedItemChanged2(ChangeEventArgs e)
+    {
+        var ID = e.Value.ToString();
+        SelectedItem2 = AllCharacters.Find(ch => ch._id.ToString() == ID);
+        await InvokeAsync(StateHasChanged);
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -17,6 +92,7 @@
         {
             var APIResult = await Characters.GetAllCharacters();
             AllCharacters = APIResult.data;
+            await InvokeAsync(StateHasChanged);
         }
     }
 
