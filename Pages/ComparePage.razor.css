@@ -1,0 +1,21 @@
+﻿.image-container {
+    position: relative;
+    display: inline-block;
+    width: 25%;
+}
+
+    .image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 8px;
+    }
+
+.bottom-right-image {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: auto;
+    z-index: 1000;
+}

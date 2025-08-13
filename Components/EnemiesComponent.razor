@@ -1,0 +1,26 @@
+﻿@if (SelectedItem != null && SelectedItem._id > 0)
+{
+    @if (SelectedItem.enemies.Count > 0)
+    {
+        <span>@SelectedItem.name played in the following <b>enemies</b> @(WinCategory ? "👑" : "")</span>
+        <table>
+            @foreach (var item in SelectedItem.enemies)
+            {
+                <tr>
+                    <td>@(SelectedItem.enemies.IndexOf(item) + 1)) @item</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <span>Oh no! It seems this character does not have any enemies 🥺</span>
+    }
+}
+
+@code {
+    [Parameter]
+    public Characters SelectedItem { get; set; }
+    [Parameter]
+    public bool WinCategory { get; set; } = false;
+}

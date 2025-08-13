@@ -24,17 +24,45 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Pages/ComparePage.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGFyZVBhZ2UucmF6b3I=
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Components/AlliedComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBbGxpZWRDb21wb25lbnQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Components/EnemiesComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xFbmVtaWVzQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Components/FilmsComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xGaWxtc0NvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Components/ParkAttractionsComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYXJrQXR0cmFjdGlvbnNDb21wb25lbnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Components/ShortFilmsComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTaG9ydEZpbG1zQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Components/TVShowsComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xUVlNob3dzQ29tcG9uZW50LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Components/VideoGamesComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWRlb0dhbWVzQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Pages/ComparePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcGFyZVBhZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-rh7si28d08
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSG9tZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = b-0xyvap9the
 
 [C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=

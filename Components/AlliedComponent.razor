@@ -1,0 +1,26 @@
+﻿@if (SelectedItem != null && SelectedItem._id > 0)
+{
+    @if (SelectedItem.allies.Count > 0)
+    {
+        <span>@SelectedItem.name played in the following <b>allies</b> @(WinCategory ? "👑" : "")</span>
+        <table>
+            @foreach (var item in SelectedItem.allies)
+            {
+                <tr>
+                    <td>@(SelectedItem.allies.IndexOf(item) + 1)) @item</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <span>Oh no! It seems this character does not have any allies 🥺</span>
+    }
+}
+
+@code {
+    [Parameter]
+    public Characters SelectedItem { get; set; }
+    [Parameter]
+    public bool WinCategory { get; set; } = false;
+}

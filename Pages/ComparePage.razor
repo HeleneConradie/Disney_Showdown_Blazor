@@ -1,36 +1,20 @@
 ﻿@page "/ComparePage"
-<style>
-    .image-container {
-        position: relative;
-        display: inline-block;
-        width: 25%;
-    }
 
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
-        }
 
-    .bottom-right-image {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 150px;
-        height: auto;
-        z-index: 1000;
-    }
-</style>
-
-<div class="justify-content-center d-flex">
-    <div class="image-container">
-        <img src="Assets/DisneyLogoPlain.jpg">
+@if (IsLoading)
+{
+    <div class="loading-overlay">
+        <div class="loader"></div>
+    </div>
+}
+<div class="row p-3">
+    <div class="col">
+        <span><b><i>Comparing two Disney characters is like judging a singing teapot against a sword-fighting raccoon — completely unfair, but wildly entertaining.</i></b></span>
     </div>
 </div>
-<div class="row" style="height: 200px">
+<div class="row g-1">
     <div class="col-12 col-md">
-        <span><img src="Assets/StitchOne.jpg" style="height: 15%; width: auto;" /> Choose a Character </span>
+        <span><img src="Assets/StitchOne.jpg" style="height: 70px; width: auto;" /> Choose a Character </span>
         <select class="form-control" @onchange="OnSelectedItemChanged">
             @foreach (var item in AllCharacters)
             {
@@ -39,7 +23,7 @@
         </select>
     </div>
     <div class="col-12 col-md">
-        <span><img src="Assets/StitchTwo.jpg" style="height: 15%; width: auto;" />Choose a Character </span>
+        <span><img src="Assets/StitchTwo.jpg" style="height: 70px; width: auto;" />Choose a Character </span>
         <select class="form-control" @onchange="OnSelectedItemChanged2">
             @foreach (var item in AllCharacters)
             {
@@ -49,18 +33,96 @@
     </div>
 </div>
 <div class="row d-flex p-2">
-    @if (SelectedItem != null && SelectedItem._id > 0)
-    {
-        <div class="col">
-aaa
-        </div>
-    }
-    @if (SelectedItem2 != null && SelectedItem2._id > 0)
-    {
-        <div class="col">
-            bbbb
-        </div>
-    }
+    <div class="col align-content-center">
+        @if (SelectedItem != null && SelectedItem._id > 0)
+        {
+            <div class="row text-center pt-3">
+                <div class="col">
+                    @if (string.IsNullOrEmpty(SelectedItem.imageUrl))
+                    {
+                        <img src="Assets/StitchNoImage.png" style="height: 100%; width: auto" />
+                    }
+                    else
+                    {
+                        <img src="@SelectedItem.imageUrl" style="height: 100%; width: auto" />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col align-content-center">
+        @if (SelectedItem2 != null && SelectedItem2._id > 0)
+        {
+            <div class="row text-center pt-3">
+                <div class="col">
+                    @if (string.IsNullOrEmpty(SelectedItem2.imageUrl))
+                    {
+                        <img src="Assets/StitchNoImage.png" style="height: 100%; width: auto" />
+                    }
+                    else
+                    {
+                        <img src="@SelectedItem2.imageUrl" style="height: 100%; width: auto" />
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row pb-2">
+    <div class="col">
+        <FilmsComponent SelectedItem="SelectedItem" WinCategory="WinnerDinner.FirstOrDefault(wd => wd.Item3 == CharacterProperty.Films).Item2"></FilmsComponent>
+    </div>
+    <div class="col">
+        <FilmsComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.Films).Item2"></FilmsComponent>
+    </div>
+</div>
+<div class="row pb-2">
+    <div class="col">
+        <ShortFilmsComponent SelectedItem="SelectedItem" WinCategory="WinnerDinner.FirstOrDefault(wd => wd.Item3 == CharacterProperty.ShortFilms).Item2"></ShortFilmsComponent>
+    </div>
+    <div class="col">
+        <ShortFilmsComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.ShortFilms).Item2"></ShortFilmsComponent>
+    </div>
+</div>
+<div class="row pb-2">
+    <div class="col">
+        <TVShowsComponent SelectedItem="SelectedItem" WinCategory="WinnerDinner.FirstOrDefault(wd => wd.Item3 == CharacterProperty.TVShows).Item2"></TVShowsComponent>
+    </div>
+    <div class="col">
+        <TVShowsComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.TVShows).Item2"></TVShowsComponent>
+    </div>
+</div>
+<div class="row pb-2">
+    <div class="col">
+        <VideoGamesComponent SelectedItem="SelectedItem" WinCategory="WinnerDinner.FirstOrDefault(wd => wd.Item3 == CharacterProperty.VideoGames).Item2"></VideoGamesComponent>
+    </div>
+    <div class="col">
+        <VideoGamesComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.VideoGames).Item2"></VideoGamesComponent>
+    </div>
+</div>
+<div class="row pb-2">
+    <div class="col">
+        <ParkAttractionsComponent SelectedItem="SelectedItem" WinCategory="WinnerDinner.FirstOrDefault(wd => wd.Item3 == CharacterProperty.ParkAttractions).Item2"></ParkAttractionsComponent>
+    </div>
+    <div class="col">
+        <ParkAttractionsComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.ParkAttractions).Item2"></ParkAttractionsComponent>
+    </div>
+</div>
+<div class="row pb-2">
+    <div class="col">
+        <AlliedComponent SelectedItem="SelectedItem" WinCategory="WinnerDinner.FirstOrDefault(wd => wd.Item3 == CharacterProperty.Allies).Item2"></AlliedComponent>
+    </div>
+    <div class="col">
+        <AlliedComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.Allies).Item2"></AlliedComponent>
+    </div>
+</div>
+<div class="row pb-2">
+    <div class="col">
+        <EnemiesComponent SelectedItem="SelectedItem" WinCategory="WinnerDinner.FirstOrDefault(wd => wd.Item3 == CharacterProperty.Enemies).Item2"></EnemiesComponent>
+    </div>
+    <div class="col">
+        <EnemiesComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.Enemies).Item2"></EnemiesComponent>
+    </div>
 </div>
 <div>
     <img class="bottom-right-image" src="Assets/Stitch.jpg" />
@@ -71,11 +133,26 @@ aaa
     public List<Characters> AllCharacters { get; set; } = new List<Characters>();
     private Characters SelectedItem;
     private Characters SelectedItem2;
+    private bool IsLoading = false;
+    public enum CharacterProperty
+    {
+        Films,
+        ShortFilms,
+        TVShows,
+        VideoGames,
+        ParkAttractions,
+        Allies,
+        Enemies
+    };
+    public List<(List<string>, bool, CharacterProperty)> WinnerDinner { get; set; } = new List<(List<string>, bool, CharacterProperty)>();
+    public List<(List<string>, bool, CharacterProperty)> WinnerDinner2 { get; set; } = new List<(List<string>, bool, CharacterProperty)>();
+
 
     private async void OnSelectedItemChanged(ChangeEventArgs e)
     {
         var ID = e.Value.ToString();
         SelectedItem = AllCharacters.Find(ch => ch._id.ToString() == ID);
+        OnCharacterChanges();
         await InvokeAsync(StateHasChanged);
     }
 
@@ -83,6 +160,7 @@ aaa
     {
         var ID = e.Value.ToString();
         SelectedItem2 = AllCharacters.Find(ch => ch._id.ToString() == ID);
+        OnCharacterChanges();
         await InvokeAsync(StateHasChanged);
     }
 
@@ -90,10 +168,75 @@ aaa
     {
         if (firstRender)
         {
-            var APIResult = await Characters.GetAllCharacters();
-            AllCharacters = APIResult.data;
-            await InvokeAsync(StateHasChanged);
+            try
+            {
+                IsLoading = true;
+                await InvokeAsync(StateHasChanged);
+                var APIResult = await Characters.GetAllCharacters();
+                AllCharacters = APIResult.data.OrderBy(ac => ac.name).ToList();
+            }
+            finally
+            {
+                IsLoading = false;
+                await InvokeAsync(StateHasChanged);
+            }
         }
+    }
+
+    public async void OnCharacterChanges()
+    {
+        IsLoading = true;
+        await InvokeAsync(StateHasChanged);
+        if (SelectedItem == null || SelectedItem2 == null)
+        {
+            IsLoading = false;
+            await InvokeAsync(StateHasChanged);
+            return;
+        }
+        WinnerDinner.Clear();
+        WinnerDinner2.Clear();
+
+        CompareList(SelectedItem.films, SelectedItem2.films, CharacterProperty.Films);
+        CompareList(SelectedItem.shortFilms, SelectedItem2.shortFilms, CharacterProperty.ShortFilms);
+        CompareList(SelectedItem.tvShows, SelectedItem2.tvShows, CharacterProperty.TVShows);
+        CompareList(SelectedItem.videoGames, SelectedItem2.videoGames, CharacterProperty.VideoGames);
+        CompareList(SelectedItem.parkAttractions, SelectedItem2.parkAttractions, CharacterProperty.ParkAttractions);
+        CompareList(SelectedItem.allies, SelectedItem2.allies, CharacterProperty.Allies);
+        CompareList(SelectedItem.enemies, SelectedItem2.enemies, CharacterProperty.Enemies);
+        OverallWinner();
+
+        IsLoading = false;
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private void CompareList(List<string> list1, List<string> list2, CharacterProperty prop)
+    {
+        list1 ??= new List<string>();
+        list2 ??= new List<string>();
+
+        int count1 = list1.Count;
+        int count2 = list2.Count;
+
+        if (count1 > count2)
+        {
+            WinnerDinner.Add((list1, true, prop));
+            WinnerDinner2.Add((list2, false, prop));
+        }
+        else if (count1 < count2)
+        {
+            WinnerDinner.Add((list1, false, prop));
+            WinnerDinner2.Add((list2, true, prop));
+        }
+        else
+        {
+            WinnerDinner.Add((list1, false, prop));
+            WinnerDinner2.Add((list2, false, prop));
+        }
+    }
+
+    private async void OverallWinner()
+    {
+        
     }
 
 }

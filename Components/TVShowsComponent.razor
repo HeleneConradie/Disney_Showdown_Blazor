@@ -1,0 +1,26 @@
+﻿@if (SelectedItem != null && SelectedItem._id > 0)
+{
+    @if (SelectedItem.tvShows.Count > 0)
+    {
+        <span>@SelectedItem.name played in the following <b>TV shows</b> @(WinCategory ? "👑" : "")</span>
+        <table>
+            @foreach (var item in SelectedItem.tvShows)
+            {
+                <tr>
+                    <td>@(SelectedItem.tvShows.IndexOf(item) + 1)) @item</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <span>Oh no! It seems this character did not play in any TV shows 🥺</span>
+    }
+}
+
+@code {
+    [Parameter]
+    public Characters SelectedItem { get; set; }
+    [Parameter]
+    public bool WinCategory { get; set; } = false;
+}
