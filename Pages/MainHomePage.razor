@@ -1,4 +1,5 @@
-﻿@RenderSelectedAction()
+﻿@page "/ComparePage"
+@RenderSelectedAction()
 
 @code {
     public List<Characters> AllCharacters { get; set; } = new List<Characters>();
@@ -8,16 +9,16 @@
         ShowComparePage,
         ShowWinnerPage
     }
-    private ShowComponent selectedComponent = ShowComponent.ShowComparePage;
+    public ShowComponent selectedComponent = ShowComponent.ShowComparePage;
 
-    private RenderFragment RenderSelectedAction() => selectedComponent switch
+    public RenderFragment RenderSelectedAction() => selectedComponent switch
     {
-        ShowComponent.ShowComparePage =>@<ComparePage WinnerDinnerShow="ShowWinnerDinner"></ComparePage>,
+        ShowComponent.ShowComparePage =>@<ComparePage WinnerDinnerShow="args => ShowWinnerDinner(args)"></ComparePage>,
         ShowComponent.ShowWinnerPage =>@<ShowWinnerComponent WinnerDinnerCharacter="WinnerDinner" CloseComponent="CloseWinnerDinner"></ShowWinnerComponent>,
         _ =>@<span>No page was found to display</span>
     };
 
-    public async Task ShowWinnerDinner((bool showPage, Characters winCharacter)args)
+    public async Task ShowWinnerDinner((bool showPage, Characters winCharacter) args)
     {
         var (showPage, winCharacter) = args;
         if (showPage)

@@ -1,49 +1,178 @@
 ﻿<script type="text/javascript">
-        window.playLoopingSound = () => {
+    window.playLoopingSound = () => {
         if (!window.loopingAudio) {
-            window.loopingAudio = new Audio('/sounds/background.mp3');
+            window.loopingAudio = new Audio('Assets/LongFirework.mp3');
             window.loopingAudio.loop = true;
             window.loopingAudio.volume = 0.5;
         }
         window.loopingAudio.play();
     };
-
-        window.launchConfetti = () => {
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 }
-        });
+    window.stopSound = () => {
+        if (window.loopingAudio) {
+            window.loopingAudio.pause();
+            window.loopingAudio.currentTime = 0;
+        }
     };
 </script>
 
+<div class="row text-end">
+    <div class="col">
+        <button style="border-radius: 8px;" @onclick="CloseComponentClick">Close Winner</button>
+    </div>
+</div>
+
 @if (WinnerDinnerCharacter != null && WinnerDinnerCharacter._id > 0)
 {
-    <div class="row text-center pt-3">
+    <div class="row text-center p-3">
         <div class="col">
-            <h1>@WinnerDinnerCharacter.name won, but I think they accidentally adopted their opponent's pet hamster in the process.</h1>
-            @if (string.IsNullOrEmpty(WinnerDinnerCharacter.imageUrl))
+            <span class="pb-2"><i>@WinnerDinnerCharacter.name won, but I think they accidentally adopted their opponent's pet hamster in the process.</i></span>
+            <div class="row pb-3">
+                <div class="col">
+                    @if (string.IsNullOrEmpty(WinnerDinnerCharacter.imageUrl))
+                    {
+                        <img src="Assets/StitchNoImage.png" style="height: 80%; width: auto" />
+                    }
+                    else
+                    {
+                        <img src="@WinnerDinnerCharacter.imageUrl" style="height: 100%; width: auto" />
+                    }
+                </div>
+            </div>
+            @if (WinnerDinnerCharacter.films.Count > 0)
             {
-                <img src="Assets/StitchNoImage.png" style="height: 100%; width: auto" />
+                <div class="row p-2">
+                    <div class="col">
+                        <span>@WinnerDinnerCharacter.name played in the following <b>films</b></span>
+                        <div class="shadow-sm p-2" style="border-radius: 8px">
+                            <div class="col d-flex flex-column pb-2">
+
+                                @foreach (var item in WinnerDinnerCharacter.films)
+                                {
+                                    <span>@(WinnerDinnerCharacter.films.IndexOf(item) + 1)) @item</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-            else
+
+            @if (WinnerDinnerCharacter.shortFilms.Count > 0)
             {
-                <img src="@WinnerDinnerCharacter.imageUrl" style="height: 100%; width: auto" />
+                <div class="row p-2">
+                    <div class="col">
+                        <span>@WinnerDinnerCharacter.name played in the following <b>short films</b></span>
+                        <div class="shadow-sm p-2" style="border-radius: 8px">
+                            <div class="col d-flex flex-column pb-2">
+
+                                @foreach (var item in WinnerDinnerCharacter.shortFilms)
+                                {
+                                    <span>@(WinnerDinnerCharacter.shortFilms.IndexOf(item) + 1)) @item</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
+
+            @if (WinnerDinnerCharacter.tvShows.Count > 0)
+            {
+                <div class="row p-2">
+                    <div class="col">
+                        <span>@WinnerDinnerCharacter.name played in the following <b>TV shows</b></span>
+                        <div class="shadow-sm p-2" style="border-radius: 8px">
+                            <div class="col d-flex flex-column pb-2">
+
+                                @foreach (var item in WinnerDinnerCharacter.tvShows)
+                                {
+                                    <span>@(WinnerDinnerCharacter.tvShows.IndexOf(item) + 1)) @item</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (WinnerDinnerCharacter.videoGames.Count > 0)
+            {
+                <div class="row p-2">
+                    <div class="col">
+                        <span>@WinnerDinnerCharacter.name played in the following <b>video games</b></span>
+                        <div class="shadow-sm p-2" style="border-radius: 8px">
+                            <div class="col d-flex flex-column pb-2">
+
+                                @foreach (var item in WinnerDinnerCharacter.videoGames)
+                                {
+                                    <span>@(WinnerDinnerCharacter.videoGames.IndexOf(item) + 1)) @item</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (WinnerDinnerCharacter.parkAttractions.Count > 0)
+            {
+                <div class="row p-2">
+                    <div class="col">
+                        <span>@WinnerDinnerCharacter.name has the following <b>park attractions</b></span>
+                        <div class="shadow-sm p-2" style="border-radius: 8px">
+                            <div class="col d-flex flex-column pb-2">
+
+                                @foreach (var item in WinnerDinnerCharacter.parkAttractions)
+                                {
+                                    <span>@(WinnerDinnerCharacter.parkAttractions.IndexOf(item) + 1)) @item</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (WinnerDinnerCharacter.enemies.Count > 0)
+            {
+                <div class="row p-2">
+                    <div class="col">
+                        <span>@WinnerDinnerCharacter.name has the following <b>enemies</b></span>
+                        <div class="shadow-sm p-2" style="border-radius: 8px">
+                            <div class="col d-flex flex-column pb-2">
+
+                                @foreach (var item in WinnerDinnerCharacter.enemies)
+                                {
+                                    <span>@(WinnerDinnerCharacter.enemies.IndexOf(item) + 1)) @item</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @if (WinnerDinnerCharacter.allies.Count > 0)
+            {
+                <div class="row p-2">
+                    <div class="col">
+                        <span>@WinnerDinnerCharacter.name has the following <b>allies</b></span>
+                        <div class="shadow-sm p-2" style="border-radius: 8px">
+                            <div class="col d-flex flex-column pb-2">
+
+                                @foreach (var item in WinnerDinnerCharacter.allies)
+                                {
+                                    <span>@(WinnerDinnerCharacter.allies.IndexOf(item) + 1)) @item</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
         </div>
     </div>
 }
-<div class="row">
-    <div class="col">
-        <button class="bg-danger" @onclick="() => CloseComponent.InvokeAsync(true)">Close Winner</button>
-    </div>
-</div>
 
 @code {
     [Parameter]
     public Characters WinnerDinnerCharacter { get; set; } = new Characters();
     [Parameter]
-    public EventCallback<bool> CloseComponent { get; set; } 
+    public EventCallback<bool> CloseComponent { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -51,5 +180,11 @@
         {
             await JS.InvokeVoidAsync("playLoopingSound");
         }
+    }
+
+    public async Task CloseComponentClick()
+    {
+        await JS.InvokeVoidAsync("stopSound");
+        await CloseComponent.InvokeAsync(true);
     }
 }
