@@ -52,6 +52,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xWaWRlb0dhbWVzQ29tcG9uZW50LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Pages/MainHomePage.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbkhvbWVQYWdlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/Pages/ShowWinnerComponent.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hvd1dpbm5lckNvbXBvbmVudC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/helen/OneDrive/Desktop/Disney_Showdown_Blazor/Disney_Showdown_Blazor/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

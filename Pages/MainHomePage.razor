@@ -1,0 +1,40 @@
+﻿@RenderSelectedAction()
+
+@code {
+    public List<Characters> AllCharacters { get; set; } = new List<Characters>();
+    public Characters WinnerDinner { get; set; } = new Characters();
+    public enum ShowComponent
+    {
+        ShowComparePage,
+        ShowWinnerPage
+    }
+    private ShowComponent selectedComponent = ShowComponent.ShowComparePage;
+
+    private RenderFragment RenderSelectedAction() => selectedComponent switch
+    {
+        ShowComponent.ShowComparePage =>@<ComparePage WinnerDinnerShow="ShowWinnerDinner"></ComparePage>,
+        ShowComponent.ShowWinnerPage =>@<ShowWinnerComponent WinnerDinnerCharacter="WinnerDinner" CloseComponent="CloseWinnerDinner"></ShowWinnerComponent>,
+        _ =>@<span>No page was found to display</span>
+    };
+
+    public async Task ShowWinnerDinner((bool showPage, Characters winCharacter)args)
+    {
+        var (showPage, winCharacter) = args;
+        if (showPage)
+        {
+            WinnerDinner = winCharacter;
+            selectedComponent = ShowComponent.ShowWinnerPage;
+            await InvokeAsync(StateHasChanged);
+        }
+
+    }
+
+    public async Task CloseWinnerDinner(bool close)
+    {
+        if (close)
+        {
+            selectedComponent = ShowComponent.ShowComparePage;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+}

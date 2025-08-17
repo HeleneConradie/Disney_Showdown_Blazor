@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{9B9348E2-A1C5-4D84-AED9-055B9C4D6704}|DisneyShowdown.csproj|solutionrelative:pages\\comparepage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9B9348E2-A1C5-4D84-AED9-055B9C4D6704}|DisneyShowdown.csproj|c:\\users\\helen\\onedrive\\desktop\\disney_showdown_blazor\\disney_showdown_blazor\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9B9348E2-A1C5-4D84-AED9-055B9C4D6704}|DisneyShowdown.csproj|solutionrelative:pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9B9348E2-A1C5-4D84-AED9-055B9C4D6704}|DisneyShowdown.csproj|c:\\users\\helen\\onedrive\\desktop\\disney_showdown_blazor\\disney_showdown_blazor\\pages\\mainhomepage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9B9348E2-A1C5-4D84-AED9-055B9C4D6704}|DisneyShowdown.csproj|solutionrelative:pages\\mainhomepage.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,22 +44,22 @@
               "RelativeDocumentMoniker": "Pages\\ComparePage.razor",
               "ToolTip": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\Pages\\ComparePage.razor",
               "RelativeToolTip": "Pages\\ComparePage.razor",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAiwM8AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAFYBAAAAAAAAAAAAAGUBAABzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-13T10:55:41.698Z",
+              "WhenOpened": "2025-08-17T17:42:36.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "_Host.cshtml",
-              "DocumentMoniker": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\Pages\\_Host.cshtml",
-              "RelativeDocumentMoniker": "Pages\\_Host.cshtml",
-              "ToolTip": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\Pages\\_Host.cshtml",
-              "RelativeToolTip": "Pages\\_Host.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "MainHomePage.razor",
+              "DocumentMoniker": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\Pages\\MainHomePage.razor",
+              "RelativeDocumentMoniker": "Pages\\MainHomePage.razor",
+              "ToolTip": "C:\\Users\\helen\\OneDrive\\Desktop\\Disney_Showdown_Blazor\\Disney_Showdown_Blazor\\Pages\\MainHomePage.razor",
+              "RelativeToolTip": "Pages\\MainHomePage.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-08-13T10:55:40.384Z",
+              "WhenOpened": "2025-08-17T19:32:42.659Z",
               "EditorCaption": ""
             }
           ]

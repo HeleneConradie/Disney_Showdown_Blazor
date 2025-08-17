@@ -1,0 +1,55 @@
+﻿<script type="text/javascript">
+        window.playLoopingSound = () => {
+        if (!window.loopingAudio) {
+            window.loopingAudio = new Audio('/sounds/background.mp3');
+            window.loopingAudio.loop = true;
+            window.loopingAudio.volume = 0.5;
+        }
+        window.loopingAudio.play();
+    };
+
+        window.launchConfetti = () => {
+        confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+        });
+    };
+</script>
+
+@if (WinnerDinnerCharacter != null && WinnerDinnerCharacter._id > 0)
+{
+    <div class="row text-center pt-3">
+        <div class="col">
+            <h1>@WinnerDinnerCharacter.name won, but I think they accidentally adopted their opponent's pet hamster in the process.</h1>
+            @if (string.IsNullOrEmpty(WinnerDinnerCharacter.imageUrl))
+            {
+                <img src="Assets/StitchNoImage.png" style="height: 100%; width: auto" />
+            }
+            else
+            {
+                <img src="@WinnerDinnerCharacter.imageUrl" style="height: 100%; width: auto" />
+            }
+        </div>
+    </div>
+}
+<div class="row">
+    <div class="col">
+        <button class="bg-danger" @onclick="() => CloseComponent.InvokeAsync(true)">Close Winner</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Characters WinnerDinnerCharacter { get; set; } = new Characters();
+    [Parameter]
+    public EventCallback<bool> CloseComponent { get; set; } 
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("playLoopingSound");
+        }
+    }
+}

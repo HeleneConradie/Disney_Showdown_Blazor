@@ -1,21 +1,25 @@
 ﻿@if (SelectedItem != null && SelectedItem._id > 0)
 {
-    @if (SelectedItem.parkAttractions.Count > 0)
-    {
-        <span>@SelectedItem.name played in the following <b>park attractions</b> @(WinCategory ? "👑" : "")</span>
-        <table>
-            @foreach (var item in SelectedItem.parkAttractions)
-            {
-                <tr>
-                    <td>@(SelectedItem.parkAttractions.IndexOf(item) + 1)) @item</td>
-                </tr>
-            }
-        </table>
-    }
-    else
-    {
-        <span>Oh no! It seems this character does not have any park attractions 🥺</span>
-    }
+    <div class="row p-2">
+        <div class="col">
+            <span>@SelectedItem.name played in the following <b>park attractions</b> @(WinCategory ? "👑" : "")</span>
+            <div class="shadow-sm p-2">
+                <div class="col d-flex flex-column pb-2" style="border-radius: 8px">
+                    @if (SelectedItem.parkAttractions.Count > 0)
+                    {
+                        @foreach (var item in SelectedItem.parkAttractions)
+                        {
+                            <span>@(SelectedItem.parkAttractions.IndexOf(item) + 1)) @item</span>
+                        }
+                    }
+                    else
+                    {
+                        <span class="fw-cold"><i>Oh no! It seems this character  does not have any park attractions 🥺</i></span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 @code {

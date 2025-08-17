@@ -16,13 +16,13 @@ namespace DisneyShowdown.BAL
         public string imageUrl { get; set; }
         public string url { get; set; }
 
-        public static async Task<ApiResponse<Characters>> GetAllCharacters()
+        public static async Task<ApiResponseList<Characters>> GetAllCharacters()
         {
-            return await APIController.GetCharacters<Characters>("character");
+            return await APIController.GetCharacters<Characters>();
         }
         public static async Task<ApiResponse<Characters>> GetCharacter(int ID)
         {
-            return await APIController.GetCharacters<Characters>($"character/{ID}");
+            return await APIController.GetCharacter<Characters>(ID.ToString());
         }
     }
 }

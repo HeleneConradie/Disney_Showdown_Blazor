@@ -1,21 +1,25 @@
 ﻿@if (SelectedItem != null && SelectedItem._id > 0)
 {
-    @if (SelectedItem.shortFilms.Count > 0)
-    {
-        <span>@SelectedItem.name played in the following <b>short films</b> @(WinCategory ? "👑" : "")</span>
-        <table>
-            @foreach (var item in SelectedItem.shortFilms)
-            {
-                <tr>
-                    <td>@(SelectedItem.shortFilms.IndexOf(item) + 1)) @item</td>
-                </tr>
-            }
-        </table>
-    }
-    else
-    {
-        <span>Oh no! It seems this character did not play in any short films 🥺</span>
-    }
+    <div class="row p-2">
+        <div class="col">
+            <span>@SelectedItem.name played in the following <b>short films</b> @(WinCategory ? "👑" : "")</span>
+            <div class="shadow-sm p-2">
+                <div class="col d-flex flex-column pb-2" style="border-radius: 8px">
+                    @if (SelectedItem.shortFilms.Count > 0)
+                    {
+                        @foreach (var item in SelectedItem.shortFilms)
+                        {
+                            <span>@(SelectedItem.shortFilms.IndexOf(item) + 1)) @item</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>Oh no! It seems this character did not play in any short films 🥺</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 @code {

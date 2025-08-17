@@ -1,5 +1,10 @@
 ﻿@page "/ComparePage"
-
+<script type="text/javascript">
+        window.playClickSound = () => {
+        const audio = new Audio('Assets/ShortFirework.wav');
+        audio.play();
+    };
+</script>
 
 @if (IsLoading)
 {
@@ -7,6 +12,7 @@
         <div class="loader"></div>
     </div>
 }
+
 <div class="row p-3">
     <div class="col">
         <span><b><i>Comparing two Disney characters is like judging a singing teapot against a sword-fighting raccoon — completely unfair, but wildly entertaining.</i></b></span>
@@ -14,22 +20,54 @@
 </div>
 <div class="row g-1">
     <div class="col-12 col-md">
-        <span><img src="Assets/StitchOne.jpg" style="height: 70px; width: auto;" /> Choose a Character </span>
-        <select class="form-control" @onchange="OnSelectedItemChanged">
-            @foreach (var item in AllCharacters)
-            {
-                <option value="@item._id" selected="@(item == SelectedItem)">@item.name</option>
-            }
-        </select>
+        <span><img src="Assets/StitchOne.jpg" style="height: 70px; width: auto;" /> Choose a Character from the dropdown or search</span>
+        <div class="row pb-2">
+            <div class="col">
+                <select class="form-control" @onchange="OnSelectedItemChanged">
+                    @foreach (var item in AllCharacters)
+                    {
+                        <option value="@item._id" selected="@(item == SelectedItem)">@item.name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input class="form-control" placeholder="Search character" @bind=CharacterSearchOne />
+            </div>
+            <div class="col-auto">
+                <button class="form-control" @onclick=SearchCharacterOne>Search</button>
+            </div>
+        </div>
+        @if (ShowErrorMessage)
+        {
+            <span style="color: #D3D3D3"><b>@ErrorMessage</b></span>
+        }
     </div>
     <div class="col-12 col-md">
-        <span><img src="Assets/StitchTwo.jpg" style="height: 70px; width: auto;" />Choose a Character </span>
-        <select class="form-control" @onchange="OnSelectedItemChanged2">
-            @foreach (var item in AllCharacters)
-            {
-                <option value="@item._id" selected="@(item == SelectedItem2)">@item.name</option>
-            }
-        </select>
+        <span><img src="Assets/StitchTwo.jpg" style="height: 70px; width: auto;" />Choose a Character from the dropdown or search</span>
+        <div class="row pb-2">
+            <div class="col">
+                <select class="form-control" @onchange="OnSelectedItemChanged2">
+                    @foreach (var item in AllCharacters)
+                    {
+                        <option value="@item._id" selected="@(item == SelectedItem2)">@item.name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input class="form-control" placeholder="Search character" @bind=CharacterSearchTwo />
+            </div>
+            <div class="col-auto">
+                <button class="form-control" @onclick=SearchCharacterTwo>Search</button>
+            </div>
+        </div>
+        @if (ShowErrorMessageTwo)
+        {
+            <span style="color: #D3D3D3"><b>@ErrorMessageTwo</b></span>
+        }
     </div>
 </div>
 <div class="row d-flex p-2">
@@ -124,16 +162,36 @@
         <EnemiesComponent SelectedItem="SelectedItem2" WinCategory="WinnerDinner2.FirstOrDefault(wd => wd.Item3 == CharacterProperty.Enemies).Item2"></EnemiesComponent>
     </div>
 </div>
+@if (SelectedItem != null && SelectedItem2 != null && !ShowDrawMessage)
+{
+    <div class="row pb-3">
+        <div class="col-auto">
+            <button class="form-control" style="background-color: #9c6e9f; color: white" @onclick="ShowWinner">@ButtonText</button>
+        </div>
+    </div>
+}
+
+@if (ShowDrawMessage)
+{
+    <div class="row p-2">
+        <div class="col">
+            <h3 style="color: #D3D3D3"><b>@DrawMessage</b></h3>
+        </div>
+    </div>
+}
 <div>
     <img class="bottom-right-image" src="Assets/Stitch.jpg" />
 </div>
 
 @code {
+    [Parameter]
+    public EventCallback<(bool, Characters)> WinnerDinnerShow { get; set; }
 
     public List<Characters> AllCharacters { get; set; } = new List<Characters>();
     private Characters SelectedItem;
     private Characters SelectedItem2;
-    private bool IsLoading = false;
+    public Characters OverallWinner { get; set; } = new Characters();
+
     public enum CharacterProperty
     {
         Films,
@@ -147,22 +205,16 @@
     public List<(List<string>, bool, CharacterProperty)> WinnerDinner { get; set; } = new List<(List<string>, bool, CharacterProperty)>();
     public List<(List<string>, bool, CharacterProperty)> WinnerDinner2 { get; set; } = new List<(List<string>, bool, CharacterProperty)>();
 
-
-    private async void OnSelectedItemChanged(ChangeEventArgs e)
-    {
-        var ID = e.Value.ToString();
-        SelectedItem = AllCharacters.Find(ch => ch._id.ToString() == ID);
-        OnCharacterChanges();
-        await InvokeAsync(StateHasChanged);
-    }
-
-    private async void OnSelectedItemChanged2(ChangeEventArgs e)
-    {
-        var ID = e.Value.ToString();
-        SelectedItem2 = AllCharacters.Find(ch => ch._id.ToString() == ID);
-        OnCharacterChanges();
-        await InvokeAsync(StateHasChanged);
-    }
+    public string CharacterSearchOne { get; set; } = string.Empty;
+    public string CharacterSearchTwo { get; set; } = string.Empty;
+    public bool ShowErrorMessage { get; set; } = false;
+    public bool ShowErrorMessageTwo { get; set; } = false;
+    public string ErrorMessage { get; set; } = string.Empty;
+    public string ErrorMessageTwo { get; set; } = string.Empty;
+    public string ButtonText = "Show Winner";
+    private bool IsLoading = false;
+    public string DrawMessage { get; set; } = "OOPS! It seems both characters are magnificent and have ended in a draw!";
+    public bool ShowDrawMessage { get; set; } = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -183,16 +235,28 @@
         }
     }
 
+    private async void OnSelectedItemChanged(ChangeEventArgs e)
+    {
+        CharacterSearchOne = string.Empty;
+        var ID = e.Value.ToString();
+        SelectedItem = AllCharacters.Find(ch => ch._id.ToString() == ID);
+        OnCharacterChanges();
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async void OnSelectedItemChanged2(ChangeEventArgs e)
+    {
+        CharacterSearchTwo = string.Empty;
+        var ID = e.Value.ToString();
+        SelectedItem2 = AllCharacters.Find(ch => ch._id.ToString() == ID);
+        OnCharacterChanges();
+        await InvokeAsync(StateHasChanged);
+    }
+
     public async void OnCharacterChanges()
     {
-        IsLoading = true;
         await InvokeAsync(StateHasChanged);
-        if (SelectedItem == null || SelectedItem2 == null)
-        {
-            IsLoading = false;
-            await InvokeAsync(StateHasChanged);
-            return;
-        }
+        if (SelectedItem == null || SelectedItem2 == null) return;
         WinnerDinner.Clear();
         WinnerDinner2.Clear();
 
@@ -203,9 +267,7 @@
         CompareList(SelectedItem.parkAttractions, SelectedItem2.parkAttractions, CharacterProperty.ParkAttractions);
         CompareList(SelectedItem.allies, SelectedItem2.allies, CharacterProperty.Allies);
         CompareList(SelectedItem.enemies, SelectedItem2.enemies, CharacterProperty.Enemies);
-        OverallWinner();
-
-        IsLoading = false;
+        CalculateOverallWinner();
         await InvokeAsync(StateHasChanged);
     }
 
@@ -234,9 +296,104 @@
         }
     }
 
-    private async void OverallWinner()
+    public async Task SearchCharacterOne()
     {
-        
+        var characterToSearch = AllCharacters.Where(c => !string.IsNullOrEmpty(c.name) && c.name.IndexOf(CharacterSearchOne, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+        if (characterToSearch.Count > 1)
+        {
+            ErrorMessage = "More than one result has been found, please be more specific in the search";
+            ShowErrorMessage = true;
+        }
+        else if (characterToSearch != null && characterToSearch.First()._id > 0)
+        {
+            //There are two ways to go about
+            //One: API call
+            var results = await Characters.GetCharacter(characterToSearch.First()._id);
+            SelectedItem = results.data;
+            //Two: Search in already populated list
+            //SelectedItem = characterToSearch.First();
+
+            ShowErrorMessage = false;
+        }
+        else
+        {
+            ErrorMessage = $"No character containing '{CharacterSearchOne}' has been found.";
+            ShowErrorMessage = true;
+        }
+        OnCharacterChanges();
     }
 
+    public async Task SearchCharacterTwo()
+    {
+        var characterToSearch = AllCharacters.Where(c => !string.IsNullOrEmpty(c.name) && c.name.IndexOf(CharacterSearchTwo, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+        if (characterToSearch.Count > 1)
+        {
+            ErrorMessageTwo = "More than one result has been found, please be more specific in the search";
+            ShowErrorMessage = true;
+        }
+        else if (characterToSearch != null && characterToSearch.First()._id > 0)
+        {
+            //There are two ways to go about
+            //One: API call
+            var results = await Characters.GetCharacter(characterToSearch.First()._id);
+            SelectedItem2 = results.data;
+            //Two: Search in already populated list
+            //SelectedItem2 = characterToSearch.First();
+
+            ShowErrorMessage = false;
+        }
+        else
+        {
+            ErrorMessage = $"No character containing '{CharacterSearchTwo}' has been found.";
+            ShowErrorMessage = true;
+        }
+        OnCharacterChanges();
+    }
+
+    public async Task ShowWinner()
+    {
+        ButtonText = "Please wait..";
+        await InvokeAsync(StateHasChanged);
+        await JS.InvokeVoidAsync("playClickSound");
+        await WinnerDinnerShow.InvokeAsync((true, OverallWinner));
+        await InvokeAsync(StateHasChanged);
+    }
+
+    public void CalculateOverallWinner()
+    {
+        //For calculating more results for win instead of draw, I proritized some of the traits (TV Shows and Films)
+        var counterOne = 0;
+        var counterTwo = 0;
+        foreach (var item in WinnerDinner)
+        {
+            if (item.Item2)
+            {
+                counterOne++;
+            }
+            if (item.Item3 == CharacterProperty.Films || item.Item3 == CharacterProperty.TVShows)
+            {
+                foreach (var subItem in item.Item1)
+                {
+                    counterOne++;
+                }
+            }
+        }
+        foreach (var item in WinnerDinner2)
+        {
+            if (item.Item2)
+            {
+                counterTwo++;
+            }
+            if (item.Item3 == CharacterProperty.Films || item.Item3 == CharacterProperty.TVShows)
+            {
+                foreach (var subItem in item.Item1)
+                {
+                    counterTwo++;
+                }
+            }
+        }
+        if (counterOne > counterTwo) OverallWinner = SelectedItem;
+        else if (counterTwo > counterOne) OverallWinner = SelectedItem2;
+        else ShowDrawMessage = true;
+    }
 }

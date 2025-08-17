@@ -1,21 +1,25 @@
 ﻿@if (SelectedItem != null && SelectedItem._id > 0)
 {
-    @if (SelectedItem.enemies.Count > 0)
-    {
-        <span>@SelectedItem.name played in the following <b>enemies</b> @(WinCategory ? "👑" : "")</span>
-        <table>
-            @foreach (var item in SelectedItem.enemies)
-            {
-                <tr>
-                    <td>@(SelectedItem.enemies.IndexOf(item) + 1)) @item</td>
-                </tr>
-            }
-        </table>
-    }
-    else
-    {
-        <span>Oh no! It seems this character does not have any enemies 🥺</span>
-    }
+    <div class="row p-2">
+        <div class="col">
+            <span>@SelectedItem.name played in the following <b>enemies</b> @(WinCategory ? "👑" : "")</span>
+            <div class="shadow-sm p-2">
+                <div class="col d-flex flex-column pb-2" style="border-radius: 8px">
+                    @if (SelectedItem.enemies.Count > 0)
+                    {
+                        @foreach (var item in SelectedItem.enemies)
+                        {
+                            <span>@(SelectedItem.enemies.IndexOf(item) + 1)) @item</span>
+                        }
+                    }
+                    else
+                    {
+                        <span>Oh no! It seems this character does not have any enemies 🥺</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
 }
 
 @code {
